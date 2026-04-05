@@ -22,34 +22,38 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <style>
-        body { font-family: 'Poppins', 'Mukta Vaani', sans-serif; background-color: #f8fafc; }
-        .glass-card { background: rgba(255, 255, 255, 0.98); border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-        .topic-header { background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%); color: white; border-radius: 12px 12px 0 0; }
-        .math-text { font-size: 1.15rem; letter-spacing: 0.5px; }
-        .formula-box { background-color: #1e293b; color: #f8fafc; }
-        .formula-box h5 { color: #38bdf8; border-bottom: 1px solid #475569; padding-bottom: 4px; margin-top: 16px; margin-bottom: 8px; font-weight: 600; font-size: 1rem; }
+        body { font-family: 'Poppins', 'Mukta Vaani', sans-serif; background-color: #f1f5f9; }
+        .glass-card { background: rgba(255, 255, 255, 0.98); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .topic-header { background: linear-gradient(135deg, #3B82F6 0%, #6366F1 50%, #8B5CF6 100%); color: white; border-radius: 19px 19px 0 0; }
+        .math-text { font-size: 1.15rem; letter-spacing: 0.3px; line-height: 1.6; }
+        .formula-box { background: linear-gradient(to bottom right, #0f172a, #1e293b); color: #f8fafc; }
+        .formula-box h5 { color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 6px; margin-top: 18px; margin-bottom: 10px; font-weight: 600; font-size: 1.05rem; }
         .formula-box ul { list-style-type: none; padding-left: 0; }
-        .formula-box li { margin-bottom: 8px; padding-left: 12px; border-left: 2px solid #3b82f6; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .formula-box li { margin-bottom: 10px; padding-left: 14px; border-left: 3px solid #3b82f6; background: rgba(255,255,255,0.02); padding-top: 4px; padding-bottom: 4px; border-radius: 0 6px 6px 0; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; border-radius: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; border: 2px solid #0f172a; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
-        .anim-float { animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+        .anim-float { animation: float 5s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         
-        /* Fallback for SVG size if Tailwind fails to load */
+        /* Input styling overrides for mobile */
+        input[type="number"] { font-family: 'Poppins', sans-serif; transition: all 0.2s; }
+        input[type="number"]:focus { transform: scale(1.02); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15); }
+        
+        /* Fallback for SVG size if Tailwind CDN fails on GitHub Pages */
         svg { max-width: 100%; }
     </style>
 </head>
 <body class="text-gray-800 antialiased flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-md sticky top-0 z-50 border-b-4 border-indigo-500">
-        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold text-indigo-700">Diploma Sem 2 Mathematics</h1>
-                <h2 class="text-lg text-gray-500 font-semibold">ડિપ્લોમા સેમેસ્ટર 2 ગણિત</h2>
+    <header class="bg-white shadow-md sticky top-0 z-50 border-b-4 border-indigo-500 backdrop-blur-md bg-opacity-90">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                <h1 class="text-2xl font-bold text-indigo-700 tracking-tight">Diploma Sem 2 Mathematics</h1>
+                <h2 class="text-base text-gray-500 font-semibold mt-1">ડિપ્લોમા સેમેસ્ટર 2 ગણિત</h2>
             </div>
-            <a href="#lab" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700 transition duration-300 font-bold shadow-lg flex items-center gap-2">
+            <a href="#lab" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full hover:bg-indigo-700 hover:shadow-lg transform hover:-translate-y-0.5 transition duration-300 font-bold shadow flex items-center gap-2 text-sm sm:text-base">
                 Interactive Lab ⬇️
             </a>
         </div>
@@ -59,53 +63,55 @@
         </main>
 
     <section id="lab" class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 mb-12">
-        <div class="glass-card p-8 border-t-8 border-indigo-600">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-indigo-800 mb-2">Mathematics Interactive Lab</h2>
-                <h3 class="text-xl text-gray-600 mb-4">ગણિત ઇન્ટરેક્ટિવ પ્રયોગશાળા</h3>
-                <p class="text-gray-600 bg-indigo-50 p-3 rounded-lg inline-block font-medium">
+        <div class="glass-card p-6 sm:p-10 border-t-8 border-indigo-600 bg-white">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-600 mb-2">Mathematics Interactive Lab</h2>
+                <h3 class="text-xl text-gray-500 font-medium mb-6">ગણિત ઇન્ટરેક્ટિવ પ્રયોગશાળા</h3>
+                <p class="text-gray-700 bg-indigo-50 border border-indigo-100 p-4 rounded-xl inline-block font-medium shadow-sm max-w-2xl text-sm sm:text-base">
                     Select a tool below, enter your values, and generate step-by-step bilingual solutions.<br>
                     નીચેનું સાધન પસંદ કરો, તમારી કિંમતો દાખલ કરો અને પગલા-દર-પગલા ઉકેલો મેળવો.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div class="lg:col-span-4 bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                    <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Select Tool / સાધન પસંદ કરો</label>
-                    <select id="calc-topic" class="w-full p-3 rounded-lg border-2 border-indigo-200 focus:border-indigo-500 focus:ring-0 mb-6 font-semibold text-indigo-900 transition" onchange="updateCalcInputs()">
-                        <option value="det">Determinant 2x2 (નિશ્ચાયક)</option>
+                <div class="lg:col-span-4 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-inner">
+                    <label class="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wider">Select Tool / સાધન પસંદ કરો</label>
+                    <select id="calc-topic" class="w-full p-3.5 rounded-xl border-2 border-indigo-200 focus:border-indigo-600 focus:ring-0 mb-8 font-semibold text-indigo-900 bg-white transition shadow-sm cursor-pointer" onchange="updateCalcInputs()">
+                        <option value="det2">Determinant 2x2 (2x2 નિશ્ચાયક)</option>
+                        <option value="det3">Determinant 3x3 (3x3 નિશ્ચાયક)</option>
                         <option value="trigo">Trigonometry: Deg to Rad (ત્રિકોણમિતિ)</option>
                         <option value="vector">Vectors: Dot Product (સદિશો)</option>
                         <option value="coord">Coord Geo: Distance & Slope (યામ ભૂમિતિ)</option>
                         <option value="limit">Limit: Polynomial Eval (લક્ષ)</option>
                     </select>
 
-                    <div id="dynamic-inputs" class="space-y-4"></div>
+                    <div id="dynamic-inputs" class="space-y-5">
+                        </div>
 
-                    <button onclick="calculateSolution()" class="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-lg transition duration-200 flex justify-center items-center gap-2">
+                    <button onclick="calculateSolution()" class="mt-8 w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200 flex justify-center items-center gap-2 text-lg">
                         <span>Solve / ઉકેલ મેળવો</span>
                     </button>
                 </div>
 
-                <div class="lg:col-span-8 bg-white p-6 rounded-xl border-2 border-dashed border-gray-300 min-h-[400px] flex flex-col" id="calc-output">
-                    <div class="text-gray-400 text-center m-auto flex flex-col items-center">
-                        <svg width="80" height="80" class="w-20 h-20 mb-4 text-gray-300 anim-float" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                        <p class="font-medium text-lg">Solution will appear here.</p>
-                        <p class="text-sm">ઉકેલ અહીં દેખાશે.</p>
+                <div class="lg:col-span-8 bg-white p-6 sm:p-8 rounded-2xl border-2 border-dashed border-slate-300 min-h-[450px] flex flex-col shadow-sm" id="calc-output">
+                    <div class="text-slate-400 text-center m-auto flex flex-col items-center">
+                        <svg width="80" height="80" class="w-20 h-20 mb-5 text-indigo-200 anim-float" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <p class="font-semibold text-xl text-slate-500">Solution will appear here.</p>
+                        <p class="text-base mt-1">ઉકેલ અહીં દેખાશે.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-gray-300 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm">
-            <div class="flex items-center space-x-3 mb-4 md:mb-0 bg-gray-700 px-4 py-2 rounded-full shadow-inner">
-                <svg width="20" height="20" class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                <span class="font-semibold text-gray-200">Page Visits: <span id="visitCount" class="text-white font-bold text-base">0</span></span>
+    <footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-indigo-600">
+        <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm gap-6">
+            <div class="flex items-center space-x-3 bg-slate-800 px-5 py-2.5 rounded-full shadow-inner border border-slate-700">
+                <svg width="20" height="20" class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                <span class="font-medium text-slate-300">Page Visits: <span id="visitCount" class="text-white font-bold text-lg ml-1">0</span></span>
             </div>
-            <div class="text-center md:text-right font-medium">
-                &copy; <span id="year"></span> Prepared by <span class="text-white font-bold">Bhavin R Patel</span>, Lecturer Mathematics
+            <div class="text-center md:text-right font-medium text-slate-400">
+                &copy; <span id="year"></span> Prepared by <span class="text-white font-bold tracking-wide">Bhavin R Patel</span>, Lecturer Mathematics
             </div>
         </div>
     </footer>
@@ -117,14 +123,14 @@
         localStorage.setItem('mathSem2Visits', visits);
         document.getElementById('visitCount').textContent = visits;
 
-        // Content Database - ADDED hardcoded width/height to ALL SVGs to prevent GitHub Pages explosion
+        // Content Database with Failsafe SVG Widths
         const mathTopics = [
             {
                 id: "DeterminantFunction",
                 titleEn: "1. Determinant and Function", titleGu: "૧. નિશ્ચાયક અને વિધેય",
                 defEn: "A determinant is a special scalar value assigned to a square matrix. A function maps an input to an output. Logarithm is the inverse of exponentiation.",
                 defGu: "નિશ્ચાયક એ ચોરસ શ્રેણિક સાથે સંકળાયેલ અદિશ મૂલ્ય છે. વિધેય ઇનપુટને આઉટપુટ સાથે જોડે છે. લઘુગણક એ ઘાતાંકની વ્યસ્ત પ્રક્રિયા છે.",
-                svg: `<svg width="64" height="64" viewBox="0 0 100 100" class="w-16 h-16 text-blue-500 anim-float"><rect x="10" y="20" width="80" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="4"/><text x="25" y="45" font-size="14" fill="currentColor">a</text><text x="65" y="45" font-size="14" fill="currentColor">b</text><text x="25" y="70" font-size="14" fill="currentColor">c</text><text x="65" y="70" font-size="14" fill="currentColor">d</text><line x1="15" y1="20" x2="15" y2="80" stroke="currentColor" stroke-width="3"/><line x1="85" y1="20" x2="85" y2="80" stroke="currentColor" stroke-width="3"/></svg>`,
+                svg: `<svg width="72" height="72" viewBox="0 0 100 100" class="w-16 h-16 sm:w-20 sm:h-20 text-blue-500 anim-float"><rect x="10" y="20" width="80" height="60" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><text x="25" y="45" font-size="16" font-weight="bold" fill="currentColor">a</text><text x="65" y="45" font-size="16" font-weight="bold" fill="currentColor">b</text><text x="25" y="70" font-size="16" font-weight="bold" fill="currentColor">c</text><text x="65" y="70" font-size="16" font-weight="bold" fill="currentColor">d</text><line x1="15" y1="20" x2="15" y2="80" stroke="currentColor" stroke-width="3"/><line x1="85" y1="20" x2="85" y2="80" stroke="currentColor" stroke-width="3"/></svg>`,
                 formulasEn: `
                     <h5>1. Determinants (નિશ્ચાયક)</h5>
                     <ul>
@@ -150,7 +156,7 @@
                 titleEn: "2. Trigonometry", titleGu: "૨. ત્રિકોણમિતિ",
                 defEn: "The study of relationships involving lengths and angles of triangles, including periodic functions and inverse operations.",
                 defGu: "ત્રિકોણની લંબાઈ અને ખૂણાઓ વચ્ચેના સંબંધો, આવર્તક વિધેયો અને વ્યસ્ત પ્રક્રિયાઓનો અભ્યાસ.",
-                svg: `<svg width="64" height="64" viewBox="0 0 100 100" class="w-16 h-16 text-red-500 anim-float"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="3"/><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><path d="M50,50 L80,20" stroke="currentColor" stroke-width="3"/><path d="M60,50 A10,10 0 0,0 57,43" fill="none" stroke="currentColor" stroke-width="2"/><text x="65" y="45" font-size="10" fill="currentColor">θ</text></svg>`,
+                svg: `<svg width="72" height="72" viewBox="0 0 100 100" class="w-16 h-16 sm:w-20 sm:h-20 text-red-500 anim-float"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="4"/><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><path d="M50,50 L80,20" stroke="currentColor" stroke-width="4"/><path d="M60,50 A10,10 0 0,0 57,43" fill="none" stroke="currentColor" stroke-width="2"/><text x="65" y="45" font-size="12" font-weight="bold" fill="currentColor">θ</text></svg>`,
                 formulasEn: `
                     <h5>1. Units of Angles (ખૂણાના એકમો)</h5>
                     <ul>
@@ -189,7 +195,7 @@
                 titleEn: "3. Vectors", titleGu: "૩. સદિશો",
                 defEn: "A vector has both magnitude and direction. Operations include addition, scalar product (dot), and vector product (cross).",
                 defGu: "સદિશને મૂલ્ય અને દિશા બંને હોય છે. પ્રક્રિયાઓમાં સરવાળો, અદિશ ગુણાકાર અને સદિશ ગુણાકાર સામેલ છે.",
-                svg: `<svg width="64" height="64" viewBox="0 0 100 100" class="w-16 h-16 text-green-500 anim-float"><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="4"/><polygon points="85,15 70,25 80,35" fill="currentColor"/><line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" stroke-dasharray="4,4" stroke-width="2"/><text x="45" y="45" font-size="14" fill="currentColor" transform="rotate(-45 45,45)">v</text></svg>`,
+                svg: `<svg width="72" height="72" viewBox="0 0 100 100" class="w-16 h-16 sm:w-20 sm:h-20 text-emerald-500 anim-float"><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="5"/><polygon points="85,15 70,25 80,35" fill="currentColor"/><line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" stroke-dasharray="4,4" stroke-width="2"/><text x="45" y="45" font-size="16" font-weight="bold" fill="currentColor" transform="rotate(-45 45,45)">v</text></svg>`,
                 formulasEn: `
                     <h5>1. Basic Vector Operations (પ્રાથમિક પ્રક્રિયાઓ)</h5>
                     <ul>
@@ -221,7 +227,7 @@
                 titleEn: "4. Coordinate Geometry", titleGu: "૪. યામ ભૂમિતિ",
                 defEn: "The study of geometry using a coordinate system to define points, lines, slopes, and circles algebraically.",
                 defGu: "બિંદુઓ, રેખાઓ, ઢાળ અને વર્તુળોને બૈજિક રીતે વ્યાખ્યાયિત કરવા યામ પદ્ધતિનો ઉપયોગ કરીને ભૂમિતિનો અભ્યાસ.",
-                svg: `<svg width="64" height="64" viewBox="0 0 100 100" class="w-16 h-16 text-purple-500 anim-float"><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4,2"/></svg>`,
+                svg: `<svg width="72" height="72" viewBox="0 0 100 100" class="w-16 h-16 sm:w-20 sm:h-20 text-purple-500 anim-float"><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="4"/><circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3"/></svg>`,
                 formulasEn: `
                     <h5>1. Points & Slope (બિંદુઓ અને ઢાળ)</h5>
                     <ul>
@@ -255,14 +261,14 @@
                 titleEn: "5. Limit", titleGu: "૫. લક્ષ",
                 defEn: "A limit evaluates the value a function approaches as the input approaches a specific point.",
                 defGu: "જ્યારે ચલ કોઈ ચોક્કસ બિંદુની નજીક જાય ત્યારે વિધેય કયા મૂલ્યની નજીક પહોંચે છે તે લક્ષ દર્શાવે છે.",
-                svg: `<svg width="64" height="64" viewBox="0 0 100 100" class="w-16 h-16 text-teal-500 anim-float"><path d="M10,90 Q50,90 90,10" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="50" cy="50" r="5" fill="none" stroke="currentColor" stroke-width="3"/><text x="60" y="55" font-size="12" fill="currentColor">L</text></svg>`,
+                svg: `<svg width="72" height="72" viewBox="0 0 100 100" class="w-16 h-16 sm:w-20 sm:h-20 text-teal-500 anim-float"><path d="M10,90 Q50,90 90,10" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="4"/><text x="62" y="56" font-size="14" font-weight="bold" fill="currentColor">L</text></svg>`,
                 formulasEn: `
                     <h5>Standard Formulae of Limit (લક્ષના પ્રમાણભૂત સૂત્રો)</h5>
                     <ul>
                         <li><b>Algebraic:</b> \\( \\lim_{x \\to a} \\frac{x^n - a^n}{x - a} = n a^{n-1} \\)</li>
                         <li><b>Trigonometric:</b> \\( \\lim_{\\theta \\to 0} \\frac{\\sin\\theta}{\\theta} = 1 \\) &nbsp;|&nbsp; \\( \\lim_{\\theta \\to 0} \\frac{\\tan\\theta}{\\theta} = 1 \\)</li>
                         <li><b>Exponential & Logarithmic:</b>
-                            <ul style="margin-top: 4px;">
+                            <ul style="margin-top: 6px;">
                                 <li>\\( \\lim_{x \\to 0} (1+x)^{\\frac{1}{x}} = e \\)</li>
                                 <li>\\( \\lim_{n \\to \\infty} (1+\\frac{1}{n})^n = e \\)</li>
                                 <li>\\( \\lim_{x \\to 0} \\frac{a^x - 1}{x} = \\log_e a \\)</li>
@@ -283,59 +289,61 @@
         
         mathTopics.forEach((topic) => {
             let section = document.createElement('section');
-            section.className = "glass-card overflow-hidden border border-gray-200";
+            section.className = "glass-card overflow-hidden transition duration-500 hover:shadow-xl";
             
             let header = document.createElement('div');
-            header.className = "topic-header p-6";
-            header.innerHTML = `<h2 class="text-3xl font-bold">${topic.titleEn}</h2>
-                                <h3 class="text-xl font-medium mt-1 text-indigo-100">${topic.titleGu}</h3>`;
+            header.className = "topic-header p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between";
+            header.innerHTML = `<div><h2 class="text-3xl font-bold tracking-tight">${topic.titleEn}</h2>
+                                <h3 class="text-xl font-medium mt-1 text-indigo-100">${topic.titleGu}</h3></div>`;
             section.appendChild(header);
 
             let bodyDiv = document.createElement('div');
-            bodyDiv.className = "p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8";
+            bodyDiv.className = "p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12";
 
+            // Left Col: Definitions and details
             let infoDiv = document.createElement('div');
-            infoDiv.className = "lg:col-span-4 flex flex-col space-y-6";
+            infoDiv.className = "lg:col-span-5 flex flex-col space-y-6";
             infoDiv.innerHTML = `
-                <div class="flex justify-center mb-2 bg-gray-50 rounded-xl p-4 border border-gray-100">${topic.svg}</div>
-                <div class="bg-indigo-50 p-5 rounded-xl border-l-4 border-indigo-500 shadow-sm">
-                    <h4 class="font-bold text-indigo-900 text-lg border-b border-indigo-200 pb-2 mb-2">Definition / વ્યાખ્યા</h4>
-                    <p class="text-gray-800 text-sm mb-3 font-medium">${topic.defEn}</p>
-                    <p class="text-gray-600 text-sm">${topic.defGu}</p>
+                <div class="flex justify-center mb-2 bg-slate-50 rounded-2xl p-6 border border-slate-100 shadow-inner">${topic.svg}</div>
+                <div class="bg-indigo-50 p-6 rounded-2xl border-l-4 border-indigo-500 shadow-sm transition hover:shadow-md">
+                    <h4 class="font-bold text-indigo-900 text-lg border-b border-indigo-200 pb-3 mb-3 uppercase tracking-wide text-sm">Definition / વ્યાખ્યા</h4>
+                    <p class="text-slate-800 text-base mb-3 font-semibold leading-relaxed">${topic.defEn}</p>
+                    <p class="text-slate-600 text-base leading-relaxed">${topic.defGu}</p>
                 </div>
                 
-                <div class="formula-box p-5 rounded-xl border-t-4 border-blue-400 shadow-lg flex-1 flex flex-col max-h-[450px]">
-                    <div class="flex items-center justify-between border-b border-slate-600 pb-3 mb-3">
-                        <h4 class="font-bold text-lg text-white">Formulas (મહત્વપૂર્ણ સૂત્રો)</h4>
-                        <svg width="20" height="20" class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <div class="formula-box p-6 rounded-2xl border-t-4 border-sky-400 shadow-lg flex-1 flex flex-col max-h-[500px]">
+                    <div class="flex items-center justify-between border-b border-slate-600 pb-4 mb-4">
+                        <h4 class="font-bold text-lg text-white uppercase tracking-wider">Formulas (સૂત્રો)</h4>
+                        <svg width="24" height="24" class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     </div>
-                    <div class="overflow-y-auto custom-scrollbar pr-2 math-text text-sm flex-1">
+                    <div class="overflow-y-auto custom-scrollbar pr-3 math-text text-base flex-1">
                         ${topic.formulasEn}
                     </div>
                 </div>
             `;
             bodyDiv.appendChild(infoDiv);
 
+            // Right Col: Examples
             let exDiv = document.createElement('div');
-            exDiv.className = "lg:col-span-8";
+            exDiv.className = "lg:col-span-7";
             let exTitle = document.createElement('h3');
-            exTitle.className = "text-xl font-bold text-gray-800 mb-4 border-b pb-2 flex items-center gap-2";
-            exTitle.innerHTML = `<span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-sm">${topic.examples.length}</span> Solved Examples / ઉદાહરણો`;
+            exTitle.className = "text-2xl font-bold text-slate-800 mb-6 border-b-2 border-slate-100 pb-3 flex items-center gap-3";
+            exTitle.innerHTML = `<span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-lg shadow-sm">${topic.examples.length}</span> Solved Examples / ઉદાહરણો`;
             exDiv.appendChild(exTitle);
 
             let exGrid = document.createElement('div');
-            exGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+            exGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-5";
             
             topic.examples.forEach((ex, idx) => {
                 let card = document.createElement('div');
-                card.className = "bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition duration-300 relative overflow-hidden group";
+                card.className = "bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-xl transition-all duration-300 relative overflow-hidden group hover:-translate-y-1";
                 card.innerHTML = `
-                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-400 group-hover:w-2 transition-all duration-300"></div>
-                    <div class="font-bold text-indigo-700 text-sm mb-2 uppercase tracking-wide">Example ${idx + 1}:</div>
-                    <div class="mb-1 text-gray-900 font-semibold math-text">${ex.qEn}</div>
-                    <div class="mb-4 text-sm text-gray-500 math-text">${ex.qGu}</div>
-                    <div class="bg-gray-50 p-3 rounded-lg math-text text-gray-800 border border-gray-100 font-medium">Ans: ${ex.aEn}</div>
-                    <div class="bg-gray-50 p-2 mt-1 rounded-lg text-sm text-gray-600 math-text">${ex.aGu}</div>
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-indigo-400 group-hover:bg-purple-500 transition-colors duration-300"></div>
+                    <div class="font-bold text-indigo-600 text-xs mb-3 uppercase tracking-widest bg-indigo-50 inline-block px-2 py-1 rounded">Example ${idx + 1}</div>
+                    <div class="mb-2 text-slate-900 font-semibold math-text text-lg">${ex.qEn}</div>
+                    <div class="mb-5 text-base text-slate-500 math-text">${ex.qGu}</div>
+                    <div class="bg-slate-50 p-4 rounded-xl math-text text-slate-800 border border-slate-100 font-medium">Ans: ${ex.aEn}</div>
+                    <div class="bg-slate-50 p-3 mt-2 rounded-xl text-base text-slate-600 math-text border border-slate-100">${ex.aGu}</div>
                 `;
                 exGrid.appendChild(card);
             });
@@ -358,59 +366,82 @@
             const inputsDiv = document.getElementById('dynamic-inputs');
             const outputDiv = document.getElementById('calc-output');
             
-            outputDiv.innerHTML = `<div class="text-gray-400 text-center m-auto flex flex-col items-center"><svg width="64" height="64" class="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><p class="font-medium">Ready for calculation.</p><p class="text-sm">ગણતરી માટે તૈયાર.</p></div>`;
+            outputDiv.innerHTML = `<div class="text-slate-400 text-center m-auto flex flex-col items-center"><svg width="80" height="80" class="w-20 h-20 mb-5 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><p class="font-semibold text-xl text-slate-500">Ready for calculation.</p><p class="text-base mt-1">ગણતરી માટે તૈયાર.</p></div>`;
 
             let html = '';
-            if (topic === 'det') {
+            if (topic === 'det2') {
                 html = `
-                    <p class="text-sm text-gray-500 mb-3 font-medium">2x2 Matrix / નિશ્ચાયક: <br>\\( \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} \\)</p>
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <input type="number" id="det-a" placeholder="a (e.g., 3)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
-                        <input type="number" id="det-b" placeholder="b (e.g., 4)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                    <p class="text-sm text-slate-500 mb-3 font-semibold uppercase tracking-wide">2x2 Matrix / નિશ્ચાયક: <br><span class="text-lg lowercase normal-case mt-2 block text-slate-700">\\( \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} \\)</span></p>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <input type="number" id="det2-a" placeholder="a (e.g., 3)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="det2-b" placeholder="b (e.g., 4)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="number" id="det-c" placeholder="c (e.g., 1)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
-                        <input type="number" id="det-d" placeholder="d (e.g., 2)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="number" id="det2-c" placeholder="c (e.g., 1)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="det2-d" placeholder="d (e.g., 2)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                    </div>
+                `;
+            } else if (topic === 'det3') {
+                html = `
+                    <p class="text-sm text-slate-500 mb-3 font-semibold uppercase tracking-wide">3x3 Matrix / નિશ્ચાયક:</p>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <input type="number" id="det3-a1" placeholder="a1" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-b1" placeholder="b1" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-c1" placeholder="c1" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <input type="number" id="det3-a2" placeholder="a2" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-b2" placeholder="b2" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-c2" placeholder="c2" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                            <input type="number" id="det3-a3" placeholder="a3" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-b3" placeholder="b3" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                            <input type="number" id="det3-c3" placeholder="c3" class="p-2 sm:p-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-0 text-center sm:text-lg">
+                        </div>
                     </div>
                 `;
             } else if (topic === 'trigo') {
                 html = `
-                    <p class="text-sm text-gray-500 mb-3 font-medium">Angle Conversion (Degree to Radian)</p>
-                    <input type="number" id="deg" placeholder="Enter Degrees (e.g. 45)" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 mb-2">
+                    <p class="text-sm text-slate-500 mb-3 font-semibold uppercase tracking-wide">Angle Conversion (Degree to Radian)</p>
+                    <input type="number" id="deg" placeholder="Enter Degrees (e.g. 45)" class="w-full p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 mb-2 text-lg shadow-sm">
                 `;
             } else if (topic === 'vector') {
                 html = `
-                    <p class="text-sm text-gray-500 mb-3 font-medium">Vector \\( \\vec{a} = x_1\\hat{i} + y_1\\hat{j} \\) and \\( \\vec{b} = x_2\\hat{i} + y_2\\hat{j} \\)</p>
-                    <label class="text-xs font-bold text-gray-400 uppercase">Vector A / સદિશ A</label>
-                    <div class="grid grid-cols-2 gap-3 mb-3 mt-1">
-                        <input type="number" id="v1x" placeholder="x1" class="p-3 border rounded-lg">
-                        <input type="number" id="v1y" placeholder="y1" class="p-3 border rounded-lg">
+                    <p class="text-sm text-slate-500 mb-4 font-semibold uppercase tracking-wide">Vector \\( \\vec{a} \\) and \\( \\vec{b} \\)</p>
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Vector A / સદિશ A</label>
+                    <div class="grid grid-cols-2 gap-4 mb-4 mt-2">
+                        <input type="number" id="v1x" placeholder="x1 (i)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="v1y" placeholder="y1 (j)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
-                    <label class="text-xs font-bold text-gray-400 uppercase">Vector B / સદિશ B</label>
-                    <div class="grid grid-cols-2 gap-3 mt-1">
-                        <input type="number" id="v2x" placeholder="x2" class="p-3 border rounded-lg">
-                        <input type="number" id="v2y" placeholder="y2" class="p-3 border rounded-lg">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Vector B / સદિશ B</label>
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <input type="number" id="v2x" placeholder="x2 (i)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="v2y" placeholder="y2 (j)" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
                 `;
             } else if (topic === 'coord') {
                 html = `
-                    <p class="text-sm text-gray-500 mb-3 font-medium">Point 1 (x1, y1) & Point 2 (x2, y2)</p>
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <input type="number" id="cx1" placeholder="x1" class="p-3 border rounded-lg">
-                        <input type="number" id="cy1" placeholder="y1" class="p-3 border rounded-lg">
+                    <p class="text-sm text-slate-500 mb-4 font-semibold uppercase tracking-wide">Point 1 & Point 2</p>
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Point 1 / બિંદુ 1 (x1, y1)</label>
+                    <div class="grid grid-cols-2 gap-4 mb-4 mt-2">
+                        <input type="number" id="cx1" placeholder="x1" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="cy1" placeholder="y1" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="number" id="cx2" placeholder="x2" class="p-3 border rounded-lg">
-                        <input type="number" id="cy2" placeholder="y2" class="p-3 border rounded-lg">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Point 2 / બિંદુ 2 (x2, y2)</label>
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <input type="number" id="cx2" placeholder="x2" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="cy2" placeholder="y2" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
                 `;
             } else if (topic === 'limit') {
                 html = `
-                    <p class="text-sm text-gray-500 mb-3 font-medium">Polynomial Eval: \\( \\lim_{x \\to c} (ax^2 + bx) \\)</p>
-                    <input type="number" id="lim-c" placeholder="Limit 'c' (x approaches)" class="w-full p-3 border rounded-lg mb-3 bg-indigo-50">
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="number" id="lim-a" placeholder="Coeff 'a'" class="p-3 border rounded-lg">
-                        <input type="number" id="lim-b" placeholder="Coeff 'b'" class="p-3 border rounded-lg">
+                    <p class="text-sm text-slate-500 mb-3 font-semibold uppercase tracking-wide">Polynomial Eval: \\( \\lim_{x \\to c} (ax^2 + bx) \\)</p>
+                    <input type="number" id="lim-c" placeholder="Limit 'c' (x approaches)" class="w-full p-3.5 border-2 border-indigo-300 rounded-xl mb-4 bg-indigo-50 focus:border-indigo-600 focus:ring-0 text-lg shadow-sm">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="number" id="lim-a" placeholder="Coeff 'a'" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
+                        <input type="number" id="lim-b" placeholder="Coeff 'b'" class="p-3.5 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 text-center text-lg shadow-sm">
                     </div>
                 `;
             }
@@ -427,35 +458,80 @@
             let resGu = '';
 
             try {
-                if (topic === 'det') {
-                    const a = parseFloat(document.getElementById('det-a').value);
-                    const b = parseFloat(document.getElementById('det-b').value);
-                    const c = parseFloat(document.getElementById('det-c').value);
-                    const d = parseFloat(document.getElementById('det-d').value);
+                if (topic === 'det2') {
+                    const a = parseFloat(document.getElementById('det2-a').value);
+                    const b = parseFloat(document.getElementById('det2-b').value);
+                    const c = parseFloat(document.getElementById('det2-c').value);
+                    const d = parseFloat(document.getElementById('det2-d').value);
                     if([a,b,c,d].some(isNaN)) throw "Fill all fields / બધા ખાના ભરો";
 
                     const val = (a*d) - (b*c);
-                    resEn += `<b>Step 1:</b> Formula for 2x2 determinant is \\( ad - bc \\).<br>`;
-                    resEn += `<b>Step 2:</b> Substitute values: \\( (${a})(${d}) - (${b})(${c}) \\).<br>`;
-                    resEn += `<b>Result:</b> \\( ${a*d} - (${b*c}) = ${val} \\)`;
+                    resEn += `<b>Step 1:</b> Formula for 2x2 determinant is \\( ad - bc \\).<br><br>`;
+                    resEn += `<b>Step 2:</b> Substitute values: \\( (${a})(${d}) - (${b})(${c}) \\).<br><br>`;
+                    resEn += `<b>Result:</b> \\( ${a*d} - (${b*c}) = \\mathbf{${val}} \\)`;
 
-                    resGu += `<b>પગલું 1:</b> 2x2 નિશ્ચાયકનું સૂત્ર \\( ad - bc \\) છે.<br>`;
-                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${a})(${d}) - (${b})(${c}) \\).<br>`;
-                    resGu += `<b>જવાબ:</b> \\( ${a*d} - (${b*c}) = ${val} \\)`;
+                    resGu += `<b>પગલું 1:</b> 2x2 નિશ્ચાયકનું સૂત્ર \\( ad - bc \\) છે.<br><br>`;
+                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${a})(${d}) - (${b})(${c}) \\).<br><br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${a*d} - (${b*c}) = \\mathbf{${val}} \\)`;
                 } 
+                else if (topic === 'det3') {
+                    const a1 = parseFloat(document.getElementById('det3-a1').value);
+                    const b1 = parseFloat(document.getElementById('det3-b1').value);
+                    const c1 = parseFloat(document.getElementById('det3-c1').value);
+                    const a2 = parseFloat(document.getElementById('det3-a2').value);
+                    const b2 = parseFloat(document.getElementById('det3-b2').value);
+                    const c2 = parseFloat(document.getElementById('det3-c2').value);
+                    const a3 = parseFloat(document.getElementById('det3-a3').value);
+                    const b3 = parseFloat(document.getElementById('det3-b3').value);
+                    const c3 = parseFloat(document.getElementById('det3-c3').value);
+                    
+                    if([a1,b1,c1,a2,b2,c2,a3,b3,c3].some(isNaN)) throw "Fill all 9 fields / બધા 9 ખાના ભરો";
+
+                    const term1_inner = (b2*c3) - (b3*c2);
+                    const term2_inner = (a2*c3) - (a3*c2);
+                    const term3_inner = (a2*b3) - (a3*b2);
+                    
+                    const term1 = a1 * term1_inner;
+                    const term2 = b1 * term2_inner;
+                    const term3 = c1 * term3_inner;
+                    
+                    const val = term1 - term2 + term3;
+
+                    resEn += `<b>Step 1:</b> Expand along the first row (a1, b1, c1).<br><br>`;
+                    resEn += `\\( = ${a1} \\begin{vmatrix} ${b2} & ${c2} \\\\ ${b3} & ${c3} \\end{vmatrix} - (${b1}) \\begin{vmatrix} ${a2} & ${c2} \\\\ ${a3} & ${c3} \\end{vmatrix} + (${c1}) \\begin{vmatrix} ${a2} & ${b2} \\\\ ${a3} & ${b3} \\end{vmatrix} \\)<br><br>`;
+                    
+                    resEn += `<b>Step 2:</b> Calculate 2x2 determinants.<br>`;
+                    resEn += `\\( = ${a1}[(${b2})(${c3}) - (${b3})(${c2})] - (${b1})[(${a2})(${c3}) - (${a3})(${c2})] + (${c1})[(${a2})(${b3}) - (${a3})(${b2})] \\)<br><br>`;
+                    
+                    resEn += `<b>Step 3:</b> Multiply.<br>`;
+                    resEn += `\\( = ${a1}[${term1_inner}] - (${b1})[${term2_inner}] + (${c1})[${term3_inner}] \\)<br>`;
+                    resEn += `\\( = ${term1} - (${term2}) + (${term3}) \\)<br><br>`;
+                    resEn += `<b>Result:</b> \\( \\mathbf{${val}} \\)`;
+
+                    resGu += `<b>પગલું 1:</b> પ્રથમ હાર (a1, b1, c1) દ્વારા વિસ્તરણ કરો.<br><br>`;
+                    resGu += `\\( = ${a1} \\begin{vmatrix} ${b2} & ${c2} \\\\ ${b3} & ${c3} \\end{vmatrix} - (${b1}) \\begin{vmatrix} ${a2} & ${c2} \\\\ ${a3} & ${c3} \\end{vmatrix} + (${c1}) \\begin{vmatrix} ${a2} & ${b2} \\\\ ${a3} & ${b3} \\end{vmatrix} \\)<br><br>`;
+                    
+                    resGu += `<b>પગલું 2:</b> 2x2 નિશ્ચાયકની ગણતરી કરો.<br>`;
+                    resGu += `\\( = ${a1}[(${b2})(${c3}) - (${b3})(${c2})] - (${b1})[(${a2})(${c3}) - (${a3})(${c2})] + (${c1})[(${a2})(${b3}) - (${a3})(${b2})] \\)<br><br>`;
+                    
+                    resGu += `<b>પગલું 3:</b> ગુણાકાર કરો.<br>`;
+                    resGu += `\\( = ${a1}[${term1_inner}] - (${b1})[${term2_inner}] + (${c1})[${term3_inner}] \\)<br>`;
+                    resGu += `\\( = ${term1} - (${term2}) + (${term3}) \\)<br><br>`;
+                    resGu += `<b>જવાબ:</b> \\( \\mathbf{${val}} \\)`;
+                }
                 else if (topic === 'trigo') {
                     const deg = parseFloat(document.getElementById('deg').value);
                     if(isNaN(deg)) throw "Enter degree / ડિગ્રી દાખલ કરો";
                     
                     const radFraction = (deg / 180).toFixed(4);
                     
-                    resEn += `<b>Step 1:</b> Formula: \\( \\text{Radians} = \\text{Degrees} \\times \\frac{\\pi}{180^\\circ} \\).<br>`;
-                    resEn += `<b>Step 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br>`;
-                    resEn += `<b>Result:</b> \\( ${radFraction}\\pi \\) radians.`;
+                    resEn += `<b>Step 1:</b> Formula: \\( \\text{Radians} = \\text{Degrees} \\times \\frac{\\pi}{180^\\circ} \\).<br><br>`;
+                    resEn += `<b>Step 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br><br>`;
+                    resEn += `<b>Result:</b> \\( \\mathbf{${radFraction}\\pi} \\text{ radians} \\).`;
 
-                    resGu += `<b>પગલું 1:</b> સૂત્ર: \\( \\text{રેડિયન} = \\text{ડિગ્રી} \\times \\frac{\\pi}{180^\\circ} \\).<br>`;
-                    resGu += `<b>પગલું 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br>`;
-                    resGu += `<b>જવાબ:</b> \\( ${radFraction}\\pi \\) રેડિયન.`;
+                    resGu += `<b>પગલું 1:</b> સૂત્ર: \\( \\text{રેડિયન} = \\text{ડિગ્રી} \\times \\frac{\\pi}{180^\\circ} \\).<br><br>`;
+                    resGu += `<b>પગલું 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br><br>`;
+                    resGu += `<b>જવાબ:</b> \\( \\mathbf{${radFraction}\\pi} \\text{ રેડિયન} \\).`;
                 }
                 else if (topic === 'vector') {
                     const x1 = parseFloat(document.getElementById('v1x').value);
@@ -466,13 +542,13 @@
 
                     const dot = (x1*x2) + (y1*y2);
 
-                    resEn += `<b>Step 1:</b> Dot Product Formula: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br>`;
-                    resEn += `<b>Step 2:</b> Substitute: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br>`;
-                    resEn += `<b>Result:</b> \\( ${x1*x2} + (${y1*y2}) = ${dot} \\)`;
+                    resEn += `<b>Step 1:</b> Dot Product Formula: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br><br>`;
+                    resEn += `<b>Step 2:</b> Substitute: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br><br>`;
+                    resEn += `<b>Result:</b> \\( ${x1*x2} + (${y1*y2}) = \\mathbf{${dot}} \\)`;
 
-                    resGu += `<b>પગલું 1:</b> અદિશ ગુણાકારનું સૂત્ર: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br>`;
-                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br>`;
-                    resGu += `<b>જવાબ:</b> \\( ${x1*x2} + (${y1*y2}) = ${dot} \\)`;
+                    resGu += `<b>પગલું 1:</b> અદિશ ગુણાકારનું સૂત્ર: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br><br>`;
+                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br><br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${x1*x2} + (${y1*y2}) = \\mathbf{${dot}} \\)`;
                 }
                 else if (topic === 'coord') {
                     const x1 = parseFloat(document.getElementById('cx1').value);
@@ -485,11 +561,13 @@
                     let slope = "Undefined (Vertical)";
                     if(x2 !== x1) slope = ((y2-y1)/(x2-x1)).toFixed(3);
 
-                    resEn += `<b>Distance:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} = ${dist} \\)<br>`;
-                    resEn += `<b>Slope:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = ${slope} \\)<br>`;
+                    resEn += `<b>Distance:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} \\)<br>`;
+                    resEn += `\\( d = \\sqrt{(${x2-x1})^2 + (${y2-y1})^2} = \\mathbf{${dist}} \\)<br><br>`;
+                    resEn += `<b>Slope:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = \\mathbf{${slope}} \\)<br>`;
 
-                    resGu += `<b>અંતર:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} = ${dist} \\)<br>`;
-                    resGu += `<b>ઢાળ:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = ${slope} \\)<br>`;
+                    resGu += `<b>અંતર:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} \\)<br>`;
+                    resGu += `\\( d = \\sqrt{(${x2-x1})^2 + (${y2-y1})^2} = \\mathbf{${dist}} \\)<br><br>`;
+                    resGu += `<b>ઢાળ:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = \\mathbf{${slope}} \\)<br>`;
                 }
                 else if (topic === 'limit') {
                     const c = parseFloat(document.getElementById('lim-c').value);
@@ -499,31 +577,33 @@
 
                     const ans = (a * Math.pow(c, 2)) + (b * c);
 
-                    resEn += `<b>Problem:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br>`;
-                    resEn += `<b>Step 1:</b> Direct Substitution of \\( x = ${c} \\).<br>`;
-                    resEn += `<b>Step 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br>`;
-                    resEn += `<b>Result:</b> \\( ${a * c * c} + (${b * c}) = ${ans} \\)`;
+                    resEn += `<b>Problem:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br><br>`;
+                    resEn += `<b>Step 1:</b> Direct Substitution of \\( x = ${c} \\).<br><br>`;
+                    resEn += `<b>Step 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br><br>`;
+                    resEn += `<b>Result:</b> \\( ${a * c * c} + (${b * c}) = \\mathbf{${ans}} \\)`;
 
-                    resGu += `<b>રકમ:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br>`;
-                    resGu += `<b>પગલું 1:</b> સીધી કિંમત મૂકો \\( x = ${c} \\).<br>`;
-                    resGu += `<b>પગલું 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br>`;
-                    resGu += `<b>જવાબ:</b> \\( ${a * c * c} + (${b * c}) = ${ans} \\)`;
+                    resGu += `<b>રકમ:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br><br>`;
+                    resGu += `<b>પગલું 1:</b> સીધી કિંમત મૂકો \\( x = ${c} \\).<br><br>`;
+                    resGu += `<b>પગલું 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br><br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${a * c * c} + (${b * c}) = \\mathbf{${ans}} \\)`;
                 }
 
                 outputDiv.innerHTML = `
-                    <div class="flex flex-col h-full space-y-4 text-left w-full">
-                        <div class="p-5 bg-green-50 text-green-900 border-l-4 border-green-500 rounded-r-lg shadow-sm flex-1">
-                            <h4 class="font-bold border-b border-green-200 pb-2 mb-3 uppercase tracking-wide text-sm text-green-800">English Solution</h4>
-                            <div class="math-text leading-loose">${resEn}</div>
+                    <div class="flex flex-col h-full space-y-6 text-left w-full">
+                        <div class="p-6 bg-emerald-50 text-emerald-900 border-l-4 border-emerald-500 rounded-r-2xl shadow-sm flex-1 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2z"/></svg></div>
+                            <h4 class="font-bold border-b-2 border-emerald-200 pb-2 mb-4 uppercase tracking-widest text-xs text-emerald-700">English Solution</h4>
+                            <div class="math-text">${resEn}</div>
                         </div>
-                        <div class="p-5 bg-blue-50 text-blue-900 border-l-4 border-blue-500 rounded-r-lg shadow-sm flex-1">
-                            <h4 class="font-bold border-b border-blue-200 pb-2 mb-3 uppercase tracking-wide text-sm text-blue-800">Gujarati Solution (ગુજરાતી)</h4>
-                            <div class="math-text leading-loose">${resGu}</div>
+                        <div class="p-6 bg-indigo-50 text-indigo-900 border-l-4 border-indigo-500 rounded-r-2xl shadow-sm flex-1 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22L2 2h20L12 22z"/></svg></div>
+                            <h4 class="font-bold border-b-2 border-indigo-200 pb-2 mb-4 uppercase tracking-widest text-xs text-indigo-700">Gujarati Solution (ગુજરાતી)</h4>
+                            <div class="math-text">${resGu}</div>
                         </div>
                     </div>
                 `;
             } catch (err) {
-                outputDiv.innerHTML = `<div class="m-auto p-4 bg-red-100 text-red-700 rounded-lg font-bold flex items-center gap-2 border border-red-300">⚠️ Error: ${err}</div>`;
+                outputDiv.innerHTML = `<div class="m-auto p-5 bg-red-50 text-red-700 rounded-2xl font-bold flex items-center gap-3 border border-red-200 shadow-sm"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Error: ${err}</div>`;
             }
 
             if (window.MathJax && window.MathJax.typesetPromise) {
