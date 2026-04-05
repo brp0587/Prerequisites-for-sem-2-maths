@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sem 2 Maths | સેમેસ્ટર 2 ગણિત</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta+Vaani:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            },
+            startup: {
+                typeset: false
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Poppins', 'Mukta Vaani', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: rgba(255, 255, 255, 0.98); border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .topic-header { background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%); color: white; border-radius: 12px 12px 0 0; }
+        .math-text { font-size: 1.15rem; letter-spacing: 0.5px; }
+        .formula-box { background-color: #1e293b; color: #f8fafc; }
+        .formula-box h5 { color: #38bdf8; border-bottom: 1px solid #475569; padding-bottom: 4px; margin-top: 16px; margin-bottom: 8px; font-weight: 600; font-size: 1rem; }
+        .formula-box ul { list-style-type: none; padding-left: 0; }
+        .formula-box li { margin-bottom: 8px; padding-left: 12px; border-left: 2px solid #3b82f6; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        .anim-float { animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md sticky top-0 z-50 border-b-4 border-indigo-500">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-indigo-700">Diploma Sem 2 Mathematics</h1>
+                <h2 class="text-lg text-gray-500 font-semibold">ડિપ્લોમા સેમેસ્ટર 2 ગણિત</h2>
+            </div>
+            <a href="#lab" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700 transition duration-300 font-bold shadow-lg flex items-center gap-2">
+                Interactive Lab ⬇️
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-12" id="content-container">
+        </main>
+
+    <section id="lab" class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 mb-12">
+        <div class="glass-card p-8 border-t-8 border-indigo-600">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-indigo-800 mb-2">Mathematics Interactive Lab</h2>
+                <h3 class="text-xl text-gray-600 mb-4">ગણિત ઇન્ટરેક્ટિવ પ્રયોગશાળા</h3>
+                <p class="text-gray-600 bg-indigo-50 p-3 rounded-lg inline-block font-medium">
+                    Select a tool below, enter your values, and generate step-by-step bilingual solutions.<br>
+                    નીચેનું સાધન પસંદ કરો, તમારી કિંમતો દાખલ કરો અને પગલા-દર-પગલા ઉકેલો મેળવો.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-4 bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Select Tool / સાધન પસંદ કરો</label>
+                    <select id="calc-topic" class="w-full p-3 rounded-lg border-2 border-indigo-200 focus:border-indigo-500 focus:ring-0 mb-6 font-semibold text-indigo-900 transition" onchange="updateCalcInputs()">
+                        <option value="det">Determinant 2x2 (નિશ્ચાયક)</option>
+                        <option value="trigo">Trigonometry: Deg to Rad (ત્રિકોણમિતિ)</option>
+                        <option value="vector">Vectors: Dot Product (સદિશો)</option>
+                        <option value="coord">Coord Geo: Distance & Slope (યામ ભૂમિતિ)</option>
+                        <option value="limit">Limit: Polynomial Eval (લક્ષ)</option>
+                    </select>
+
+                    <div id="dynamic-inputs" class="space-y-4"></div>
+
+                    <button onclick="calculateSolution()" class="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-lg transition duration-200 flex justify-center items-center gap-2">
+                        <span>Solve / ઉકેલ મેળવો</span>
+                    </button>
+                </div>
+
+                <div class="lg:col-span-8 bg-white p-6 rounded-xl border-2 border-dashed border-gray-300 min-h-[400px] flex flex-col" id="calc-output">
+                    <div class="text-gray-400 text-center m-auto flex flex-col items-center">
+                        <svg class="w-20 h-20 mb-4 text-gray-300 anim-float" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <p class="font-medium text-lg">Solution will appear here.</p>
+                        <p class="text-sm">ઉકેલ અહીં દેખાશે.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0 bg-gray-700 px-4 py-2 rounded-full shadow-inner">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                <span class="font-semibold text-gray-200">Page Visits: <span id="visitCount" class="text-white font-bold text-base">0</span></span>
+            </div>
+            <div class="text-center md:text-right font-medium">
+                &copy; <span id="year"></span> Prepared by <span class="text-white font-bold">Bhavin R Patel</span>, Lecturer Mathematics
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        let visits = localStorage.getItem('mathSem2Visits') || 0;
+        visits++;
+        localStorage.setItem('mathSem2Visits', visits);
+        document.getElementById('visitCount').textContent = visits;
+
+        // Content Database with Comprehensive Formulas
+        const mathTopics = [
+            {
+                id: "DeterminantFunction",
+                titleEn: "1. Determinant and Function", titleGu: "૧. નિશ્ચાયક અને વિધેય",
+                defEn: "A determinant is a special scalar value assigned to a square matrix. A function maps an input to an output. Logarithm is the inverse of exponentiation.",
+                defGu: "નિશ્ચાયક એ ચોરસ શ્રેણિક સાથે સંકળાયેલ અદિશ મૂલ્ય છે. વિધેય ઇનપુટને આઉટપુટ સાથે જોડે છે. લઘુગણક એ ઘાતાંકની વ્યસ્ત પ્રક્રિયા છે.",
+                svg: `<svg viewBox="0 0 100 100" class="w-16 h-16 text-blue-500 anim-float"><rect x="10" y="20" width="80" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="4"/><text x="25" y="45" font-size="14" fill="currentColor">a</text><text x="65" y="45" font-size="14" fill="currentColor">b</text><text x="25" y="70" font-size="14" fill="currentColor">c</text><text x="65" y="70" font-size="14" fill="currentColor">d</text><line x1="15" y1="20" x2="15" y2="80" stroke="currentColor" stroke-width="3"/><line x1="85" y1="20" x2="85" y2="80" stroke="currentColor" stroke-width="3"/></svg>`,
+                formulasEn: `
+                    <h5>1. Determinants (નિશ્ચાયક)</h5>
+                    <ul>
+                        <li><b>Order 2x2:</b> \\( \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc \\)</li>
+                        <li><b>Order 3x3:</b> \\( \\begin{vmatrix} a_{1} & b_{1} & c_{1} \\\\ a_{2} & b_{2} & c_{2} \\\\ a_{3} & b_{3} & c_{3} \\end{vmatrix} = a_1(b_2c_3 - b_3c_2) - b_1(a_2c_3 - a_3c_2) + c_1(a_2b_3 - a_3b_2) \\)</li>
+                    </ul>
+                    <h5>2. Laws of Logarithm (લઘુગણકના નિયમો)</h5>
+                    <ul>
+                        <li><b>Product:</b> \\( \\log_a(mn) = \\log_a m + \\log_a n \\)</li>
+                        <li><b>Quotient:</b> \\( \\log_a(\\frac{m}{n}) = \\log_a m - \\log_a n \\)</li>
+                        <li><b>Power:</b> \\( \\log_a(m^n) = n \\log_a m \\)</li>
+                        <li><b>Base Change:</b> \\( \\log_a b = \\frac{\\log_c b}{\\log_c a} = \\frac{1}{\\log_b a} \\)</li>
+                        <li><b>Properties:</b> \\( \\log_a a = 1 \\) &nbsp;|&nbsp; \\( \\log_a 1 = 0 \\) &nbsp;|&nbsp; \\( a^{\\log_a x} = x \\)</li>
+                    </ul>
+                `,
+                examples: [
+                    { qEn: "Value of \\( \\begin{vmatrix} 3 & 4 \\\\ 1 & 2 \\end{vmatrix} \\)", qGu: "મૂલ્ય શોધો: \\( \\begin{vmatrix} 3 & 4 \\\\ 1 & 2 \\end{vmatrix} \\)", aEn: "\\( (3)(2) - (4)(1) = 6 - 4 = 2 \\)", aGu: "\\( 6 - 4 = 2 \\)" },
+                    { qEn: "Simplify \\( \\log_a x + \\log_a y \\).", qGu: "\\( \\log_a x + \\log_a y \\) નું સાદુરૂપ આપો.", aEn: "By product law: \\( \\log_a (xy) \\)", aGu: "ગુણાકારના નિયમ મુજબ: \\( \\log_a (xy) \\)" }
+                ]
+            },
+            {
+                id: "Trigonometry",
+                titleEn: "2. Trigonometry", titleGu: "૨. ત્રિકોણમિતિ",
+                defEn: "The study of relationships involving lengths and angles of triangles, including periodic functions and inverse operations.",
+                defGu: "ત્રિકોણની લંબાઈ અને ખૂણાઓ વચ્ચેના સંબંધો, આવર્તક વિધેયો અને વ્યસ્ત પ્રક્રિયાઓનો અભ્યાસ.",
+                svg: `<svg viewBox="0 0 100 100" class="w-16 h-16 text-red-500 anim-float"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="3"/><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><path d="M50,50 L80,20" stroke="currentColor" stroke-width="3"/><path d="M60,50 A10,10 0 0,0 57,43" fill="none" stroke="currentColor" stroke-width="2"/><text x="65" y="45" font-size="10" fill="currentColor">θ</text></svg>`,
+                formulasEn: `
+                    <h5>1. Units of Angles (ખૂણાના એકમો)</h5>
+                    <ul>
+                        <li>\\( \\pi \\text{ radian} = 180^\\circ \\) &nbsp; \\( \\implies 1^\\circ = \\frac{\\pi}{180} \\text{ rad} \\)</li>
+                    </ul>
+                    <h5>2. Compound Angles (સંયુક્ત ખૂણા)</h5>
+                    <ul>
+                        <li>\\( \\sin(A \\pm B) = \\sin A \\cos B \\pm \\cos A \\sin B \\)</li>
+                        <li>\\( \\cos(A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B \\)</li>
+                        <li>\\( \\tan(A \\pm B) = \\frac{\\tan A \\pm \\tan B}{1 \\mp \\tan A \\tan B} \\)</li>
+                    </ul>
+                    <h5>3. Multiple/Submultiple Angles (ગુણિત/ઉપગુણિત ખૂણા)</h5>
+                    <ul>
+                        <li>\\( \\sin(2A) = 2\\sin A \\cos A = \\frac{2\\tan A}{1+\\tan^2 A} \\)</li>
+                        <li>\\( \\cos(2A) = \\cos^2 A - \\sin^2 A = 2\\cos^2 A - 1 = 1 - 2\\sin^2 A \\)</li>
+                        <li>\\( \\tan(2A) = \\frac{2\\tan A}{1 - \\tan^2 A} \\)</li>
+                        <li>\\( \\sin(3A) = 3\\sin A - 4\\sin^3 A \\)</li>
+                        <li>\\( \\cos(3A) = 4\\cos^3 A - 3\\cos A \\)</li>
+                    </ul>
+                    <h5>4. Sum and Factor Formulae (સરવાળા અને અવયવ સૂત્રો)</h5>
+                    <ul>
+                        <li>\\( S + S = 2SC \\implies \\sin C + \\sin D = 2\\sin(\\frac{C+D}{2})\\cos(\\frac{C-D}{2}) \\)</li>
+                        <li>\\( S - S = 2CS \\implies \\sin C - \\sin D = 2\\cos(\\frac{C+D}{2})\\sin(\\frac{C-D}{2}) \\)</li>
+                        <li>\\( C + C = 2CC \\implies \\cos C + \\cos D = 2\\cos(\\frac{C+D}{2})\\cos(\\frac{C-D}{2}) \\)</li>
+                        <li>\\( C - C = -2SS \\implies \\cos C - \\cos D = -2\\sin(\\frac{C+D}{2})\\sin(\\frac{C-D}{2}) \\)</li>
+                        <li>\\( 2SC = S + S \\implies 2\\sin A\\cos B = \\sin(A+B) + \\sin(A-B) \\)</li>
+                    </ul>
+                `,
+                examples: [
+                    { qEn: "Convert \\( 60^\\circ \\) to radians.", qGu: "\\( 60^\\circ \\) ને રેડિયનમાં ફેરવો.", aEn: "\\( 60 \\times \\frac{\\pi}{180} = \\frac{\\pi}{3} \\)", aGu: "\\( 60 \\times \\frac{\\pi}{180} = \\frac{\\pi}{3} \\)" },
+                    { qEn: "Find \\( \\sin 75^\\circ \\).", qGu: "\\( \\sin 75^\\circ \\) શોધો.", aEn: "\\( \\sin(45^\\circ+30^\\circ) = \\frac{\\sqrt{3}+1}{2\\sqrt{2}} \\)", aGu: "\\( \\sin(45+30) = \\frac{\\sqrt{3}+1}{2\\sqrt{2}} \\)" }
+                ]
+            },
+            {
+                id: "Vectors",
+                titleEn: "3. Vectors", titleGu: "૩. સદિશો",
+                defEn: "A vector has both magnitude and direction. Operations include addition, scalar product (dot), and vector product (cross).",
+                defGu: "સદિશને મૂલ્ય અને દિશા બંને હોય છે. પ્રક્રિયાઓમાં સરવાળો, અદિશ ગુણાકાર અને સદિશ ગુણાકાર સામેલ છે.",
+                svg: `<svg viewBox="0 0 100 100" class="w-16 h-16 text-green-500 anim-float"><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="4"/><polygon points="85,15 70,25 80,35" fill="currentColor"/><line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" stroke-dasharray="4,4" stroke-width="2"/><text x="45" y="45" font-size="14" fill="currentColor" transform="rotate(-45 45,45)">v</text></svg>`,
+                formulasEn: `
+                    <h5>1. Basic Vector Operations (પ્રાથમિક પ્રક્રિયાઓ)</h5>
+                    <ul>
+                        <li><b>Magnitude:</b> \\( |\\vec{a}| = \\sqrt{x^2 + y^2 + z^2} \\)</li>
+                        <li><b>Unit Vector:</b> \\( \\hat{a} = \\frac{\\vec{a}}{|\\vec{a}|} \\)</li>
+                    </ul>
+                    <h5>2. Scalar / Dot Product (અદિશ ગુણાકાર)</h5>
+                    <ul>
+                        <li>\\( \\vec{a} \\cdot \\vec{b} = a_1b_1 + a_2b_2 + a_3b_3 \\)</li>
+                        <li>\\( \\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta \\)</li>
+                        <li><b>Perpendicular Condition:</b> \\( \\vec{a} \\cdot \\vec{b} = 0 \\)</li>
+                        <li><b>Work Done:</b> \\( W = \\vec{F} \\cdot \\vec{d} \\)</li>
+                    </ul>
+                    <h5>3. Vector / Cross Product (સદિશ ગુણાકાર)</h5>
+                    <ul>
+                        <li>\\( \\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix} \\)</li>
+                        <li>\\( |\\vec{a} \\times \\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta \\)</li>
+                        <li><b>Parallel Condition:</b> \\( \\vec{a} \\times \\vec{b} = 0 \\)</li>
+                        <li><b>Moment of Force:</b> \\( \\vec{M} = \\vec{r} \\times \\vec{F} \\)</li>
+                    </ul>
+                `,
+                examples: [
+                    { qEn: "Magnitude of \\( 3\\hat{i} + 4\\hat{j} \\).", qGu: "\\( 3\\hat{i} + 4\\hat{j} \\) નું માન.", aEn: "\\( \\sqrt{3^2 + 4^2} = 5 \\)", aGu: "\\( \\sqrt{9 + 16} = 5 \\)" },
+                    { qEn: "Dot product of (1,2) and (3,-1).", qGu: "(1,2) અને (3,-1) નો ડોટ પ્રોડક્ટ.", aEn: "\\( (1)(3) + (2)(-1) = 3 - 2 = 1 \\)", aGu: "\\( 3 - 2 = 1 \\)" }
+                ]
+            },
+            {
+                id: "CoordinateGeometry",
+                titleEn: "4. Coordinate Geometry", titleGu: "૪. યામ ભૂમિતિ",
+                defEn: "The study of geometry using a coordinate system to define points, lines, slopes, and circles algebraically.",
+                defGu: "બિંદુઓ, રેખાઓ, ઢાળ અને વર્તુળોને બૈજિક રીતે વ્યાખ્યાયિત કરવા યામ પદ્ધતિનો ઉપયોગ કરીને ભૂમિતિનો અભ્યાસ.",
+                svg: `<svg viewBox="0 0 100 100" class="w-16 h-16 text-purple-500 anim-float"><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2"/><line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4,2"/></svg>`,
+                formulasEn: `
+                    <h5>1. Points & Slope (બિંદુઓ અને ઢાળ)</h5>
+                    <ul>
+                        <li><b>Distance:</b> \\( d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} \\)</li>
+                        <li><b>Slope (m):</b> \\( m = \\frac{y_2-y_1}{x_2-x_1} \\)</li>
+                        <li><b>Angle between lines:</b> \\( \\tan\\theta = |\\frac{m_1 - m_2}{1 + m_1m_2}| \\)</li>
+                        <li><b>Parallel Lines:</b> \\( m_1 = m_2 \\)</li>
+                        <li><b>Perpendicular Lines:</b> \\( m_1 m_2 = -1 \\)</li>
+                    </ul>
+                    <h5>2. Equations of Straight Line (રેખાના સમીકરણો)</h5>
+                    <ul>
+                        <li><b>Two-point form:</b> \\( y - y_1 = \\frac{y_2-y_1}{x_2-x_1}(x - x_1) \\)</li>
+                        <li><b>Slope-point form:</b> \\( y - y_1 = m(x - x_1) \\)</li>
+                        <li><b>Intercept form:</b> \\( \\frac{x}{a} + \\frac{y}{b} = 1 \\)</li>
+                        <li><b>General form:</b> \\( Ax + By + C = 0 \\) (Slope \\( m = -\\frac{A}{B} \\))</li>
+                    </ul>
+                    <h5>3. Equations of Circle (વર્તુળના સમીકરણો)</h5>
+                    <ul>
+                        <li><b>Center (h,k) & Radius (r):</b> \\( (x-h)^2 + (y-k)^2 = r^2 \\)</li>
+                        <li><b>General Eq:</b> \\( x^2 + y^2 + 2gx + 2fy + c = 0 \\)</li>
+                        <li><b>Center:</b> \\( (-g, -f) \\) &nbsp;|&nbsp; <b>Radius:</b> \\( r = \\sqrt{g^2+f^2-c} \\)</li>
+                    </ul>
+                `,
+                examples: [
+                    { qEn: "Slope through (2,3) & (4,7).", qGu: "(2,3) અને (4,7) માંથી પસાર થતો ઢાળ.", aEn: "\\( \\frac{7-3}{4-2} = \\frac{4}{2} = 2 \\)", aGu: "\\( \\frac{4}{2} = 2 \\)" },
+                    { qEn: "Center of \\( x^2 + y^2 = 25 \\).", qGu: "\\( x^2 + y^2 = 25 \\) નું કેન્દ્ર.", aEn: "Center is \\( (0,0) \\), Radius \\( 5 \\).", aGu: "કેન્દ્ર \\( (0,0) \\), ત્રિજ્યા 5." }
+                ]
+            },
+            {
+                id: "Limit",
+                titleEn: "5. Limit", titleGu: "૫. લક્ષ",
+                defEn: "A limit evaluates the value a function approaches as the input approaches a specific point.",
+                defGu: "જ્યારે ચલ કોઈ ચોક્કસ બિંદુની નજીક જાય ત્યારે વિધેય કયા મૂલ્યની નજીક પહોંચે છે તે લક્ષ દર્શાવે છે.",
+                svg: `<svg viewBox="0 0 100 100" class="w-16 h-16 text-teal-500 anim-float"><path d="M10,90 Q50,90 90,10" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="50" cy="50" r="5" fill="none" stroke="currentColor" stroke-width="3"/><text x="60" y="55" font-size="12" fill="currentColor">L</text></svg>`,
+                formulasEn: `
+                    <h5>Standard Formulae of Limit (લક્ષના પ્રમાણભૂત સૂત્રો)</h5>
+                    <ul>
+                        <li><b>Algebraic:</b> \\( \\lim_{x \\to a} \\frac{x^n - a^n}{x - a} = n a^{n-1} \\)</li>
+                        <li><b>Trigonometric:</b> \\( \\lim_{\\theta \\to 0} \\frac{\\sin\\theta}{\\theta} = 1 \\) &nbsp;|&nbsp; \\( \\lim_{\\theta \\to 0} \\frac{\\tan\\theta}{\\theta} = 1 \\)</li>
+                        <li><b>Exponential & Logarithmic:</b>
+                            <ul style="margin-top: 4px;">
+                                <li>\\( \\lim_{x \\to 0} (1+x)^{\\frac{1}{x}} = e \\)</li>
+                                <li>\\( \\lim_{n \\to \\infty} (1+\\frac{1}{n})^n = e \\)</li>
+                                <li>\\( \\lim_{x \\to 0} \\frac{a^x - 1}{x} = \\log_e a \\)</li>
+                                <li>\\( \\lim_{x \\to 0} \\frac{e^x - 1}{x} = 1 \\)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                `,
+                examples: [
+                    { qEn: "Evaluate \\( \\lim_{x \\to 2} \\frac{x^5 - 32}{x - 2} \\).", qGu: "કિંમત શોધો: \\( \\lim_{x \\to 2} \\frac{x^5 - 32}{x - 2} \\).", aEn: "Formula: \\( 5(2^{5-1}) = 5(16) = 80 \\)", aGu: "સૂત્ર મુજબ: \\( 5(2^4) = 80 \\)" },
+                    { qEn: "Evaluate \\( \\lim_{\\theta \\to 0} \\frac{\\sin 3\\theta}{3\\theta} \\).", qGu: "કિંમત શોધો: \\( \\lim_{\\theta \\to 0} \\frac{\\sin 3\\theta}{3\\theta} \\).", aEn: "By standard rule, answer is 1.", aGu: "પ્રમાણભૂત નિયમ મુજબ જવાબ 1." }
+                ]
+            }
+        ];
+
+        // Generate DOM Elements dynamically
+        const contentContainer = document.getElementById('content-container');
+        
+        mathTopics.forEach((topic) => {
+            let section = document.createElement('section');
+            section.className = "glass-card overflow-hidden border border-gray-200";
+            
+            // Header
+            let header = document.createElement('div');
+            header.className = "topic-header p-6";
+            header.innerHTML = `<h2 class="text-3xl font-bold">${topic.titleEn}</h2>
+                                <h3 class="text-xl font-medium mt-1 text-indigo-100">${topic.titleGu}</h3>`;
+            section.appendChild(header);
+
+            // Body
+            let bodyDiv = document.createElement('div');
+            bodyDiv.className = "p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8";
+
+            // Left Col: Definitions and details
+            let infoDiv = document.createElement('div');
+            infoDiv.className = "lg:col-span-4 flex flex-col space-y-6";
+            infoDiv.innerHTML = `
+                <div class="flex justify-center mb-2 bg-gray-50 rounded-xl p-4 border border-gray-100">${topic.svg}</div>
+                <div class="bg-indigo-50 p-5 rounded-xl border-l-4 border-indigo-500 shadow-sm">
+                    <h4 class="font-bold text-indigo-900 text-lg border-b border-indigo-200 pb-2 mb-2">Definition / વ્યાખ્યા</h4>
+                    <p class="text-gray-800 text-sm mb-3 font-medium">${topic.defEn}</p>
+                    <p class="text-gray-600 text-sm">${topic.defGu}</p>
+                </div>
+                
+                <div class="formula-box p-5 rounded-xl border-t-4 border-blue-400 shadow-lg flex-1 flex flex-col max-h-[450px]">
+                    <div class="flex items-center justify-between border-b border-slate-600 pb-3 mb-3">
+                        <h4 class="font-bold text-lg text-white">Formulas (મહત્વપૂર્ણ સૂત્રો)</h4>
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="overflow-y-auto custom-scrollbar pr-2 math-text text-sm flex-1">
+                        ${topic.formulasEn}
+                    </div>
+                </div>
+            `;
+            bodyDiv.appendChild(infoDiv);
+
+            // Right Col: Examples
+            let exDiv = document.createElement('div');
+            exDiv.className = "lg:col-span-8";
+            let exTitle = document.createElement('h3');
+            exTitle.className = "text-xl font-bold text-gray-800 mb-4 border-b pb-2 flex items-center gap-2";
+            exTitle.innerHTML = `<span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-sm">${topic.examples.length}</span> Solved Examples / ઉદાહરણો`;
+            exDiv.appendChild(exTitle);
+
+            let exGrid = document.createElement('div');
+            exGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+            
+            topic.examples.forEach((ex, idx) => {
+                let card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition duration-300 relative overflow-hidden group";
+                card.innerHTML = `
+                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-400 group-hover:w-2 transition-all duration-300"></div>
+                    <div class="font-bold text-indigo-700 text-sm mb-2 uppercase tracking-wide">Example ${idx + 1}:</div>
+                    <div class="mb-1 text-gray-900 font-semibold math-text">${ex.qEn}</div>
+                    <div class="mb-4 text-sm text-gray-500 math-text">${ex.qGu}</div>
+                    <div class="bg-gray-50 p-3 rounded-lg math-text text-gray-800 border border-gray-100 font-medium">Ans: ${ex.aEn}</div>
+                    <div class="bg-gray-50 p-2 mt-1 rounded-lg text-sm text-gray-600 math-text">${ex.aGu}</div>
+                `;
+                exGrid.appendChild(card);
+            });
+            
+            exDiv.appendChild(exGrid);
+            bodyDiv.appendChild(exDiv);
+            section.appendChild(bodyDiv);
+            contentContainer.appendChild(section);
+        });
+
+        // Trigger MathJax after DOM generation
+        window.addEventListener('load', () => {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+        });
+
+        // Interactive Calculator Logic
+        function updateCalcInputs() {
+            const topic = document.getElementById('calc-topic').value;
+            const inputsDiv = document.getElementById('dynamic-inputs');
+            const outputDiv = document.getElementById('calc-output');
+            
+            outputDiv.innerHTML = `<div class="text-gray-400 text-center m-auto flex flex-col items-center"><svg class="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><p class="font-medium">Ready for calculation.</p><p class="text-sm">ગણતરી માટે તૈયાર.</p></div>`;
+
+            let html = '';
+            if (topic === 'det') {
+                html = `
+                    <p class="text-sm text-gray-500 mb-3 font-medium">2x2 Matrix / નિશ્ચાયક: <br>\\( \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} \\)</p>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <input type="number" id="det-a" placeholder="a (e.g., 3)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                        <input type="number" id="det-b" placeholder="b (e.g., 4)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="number" id="det-c" placeholder="c (e.g., 1)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                        <input type="number" id="det-d" placeholder="d (e.g., 2)" class="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                `;
+            } else if (topic === 'trigo') {
+                html = `
+                    <p class="text-sm text-gray-500 mb-3 font-medium">Angle Conversion (Degree to Radian)</p>
+                    <input type="number" id="deg" placeholder="Enter Degrees (e.g. 45)" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 mb-2">
+                `;
+            } else if (topic === 'vector') {
+                html = `
+                    <p class="text-sm text-gray-500 mb-3 font-medium">Vector \\( \\vec{a} = x_1\\hat{i} + y_1\\hat{j} \\) and \\( \\vec{b} = x_2\\hat{i} + y_2\\hat{j} \\)</p>
+                    <label class="text-xs font-bold text-gray-400 uppercase">Vector A / સદિશ A</label>
+                    <div class="grid grid-cols-2 gap-3 mb-3 mt-1">
+                        <input type="number" id="v1x" placeholder="x1" class="p-3 border rounded-lg">
+                        <input type="number" id="v1y" placeholder="y1" class="p-3 border rounded-lg">
+                    </div>
+                    <label class="text-xs font-bold text-gray-400 uppercase">Vector B / સદિશ B</label>
+                    <div class="grid grid-cols-2 gap-3 mt-1">
+                        <input type="number" id="v2x" placeholder="x2" class="p-3 border rounded-lg">
+                        <input type="number" id="v2y" placeholder="y2" class="p-3 border rounded-lg">
+                    </div>
+                `;
+            } else if (topic === 'coord') {
+                html = `
+                    <p class="text-sm text-gray-500 mb-3 font-medium">Point 1 (x1, y1) & Point 2 (x2, y2)</p>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <input type="number" id="cx1" placeholder="x1" class="p-3 border rounded-lg">
+                        <input type="number" id="cy1" placeholder="y1" class="p-3 border rounded-lg">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="number" id="cx2" placeholder="x2" class="p-3 border rounded-lg">
+                        <input type="number" id="cy2" placeholder="y2" class="p-3 border rounded-lg">
+                    </div>
+                `;
+            } else if (topic === 'limit') {
+                html = `
+                    <p class="text-sm text-gray-500 mb-3 font-medium">Polynomial Eval: \\( \\lim_{x \\to c} (ax^2 + bx) \\)</p>
+                    <input type="number" id="lim-c" placeholder="Limit 'c' (x approaches)" class="w-full p-3 border rounded-lg mb-3 bg-indigo-50">
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="number" id="lim-a" placeholder="Coeff 'a'" class="p-3 border rounded-lg">
+                        <input type="number" id="lim-b" placeholder="Coeff 'b'" class="p-3 border rounded-lg">
+                    </div>
+                `;
+            }
+            inputsDiv.innerHTML = html;
+            if (window.MathJax) MathJax.typesetPromise([inputsDiv]);
+        }
+
+        updateCalcInputs();
+
+        function calculateSolution() {
+            const topic = document.getElementById('calc-topic').value;
+            const outputDiv = document.getElementById('calc-output');
+            let resEn = '';
+            let resGu = '';
+
+            try {
+                if (topic === 'det') {
+                    const a = parseFloat(document.getElementById('det-a').value);
+                    const b = parseFloat(document.getElementById('det-b').value);
+                    const c = parseFloat(document.getElementById('det-c').value);
+                    const d = parseFloat(document.getElementById('det-d').value);
+                    if([a,b,c,d].some(isNaN)) throw "Fill all fields / બધા ખાના ભરો";
+
+                    const val = (a*d) - (b*c);
+                    resEn += `<b>Step 1:</b> Formula for 2x2 determinant is \\( ad - bc \\).<br>`;
+                    resEn += `<b>Step 2:</b> Substitute values: \\( (${a})(${d}) - (${b})(${c}) \\).<br>`;
+                    resEn += `<b>Result:</b> \\( ${a*d} - (${b*c}) = ${val} \\)`;
+
+                    resGu += `<b>પગલું 1:</b> 2x2 નિશ્ચાયકનું સૂત્ર \\( ad - bc \\) છે.<br>`;
+                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${a})(${d}) - (${b})(${c}) \\).<br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${a*d} - (${b*c}) = ${val} \\)`;
+                } 
+                else if (topic === 'trigo') {
+                    const deg = parseFloat(document.getElementById('deg').value);
+                    if(isNaN(deg)) throw "Enter degree / ડિગ્રી દાખલ કરો";
+                    
+                    const radFraction = (deg / 180).toFixed(4);
+                    
+                    resEn += `<b>Step 1:</b> Formula: \\( \\text{Radians} = \\text{Degrees} \\times \\frac{\\pi}{180^\\circ} \\).<br>`;
+                    resEn += `<b>Step 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br>`;
+                    resEn += `<b>Result:</b> \\( ${radFraction}\\pi \\) radians.`;
+
+                    resGu += `<b>પગલું 1:</b> સૂત્ર: \\( \\text{રેડિયન} = \\text{ડિગ્રી} \\times \\frac{\\pi}{180^\\circ} \\).<br>`;
+                    resGu += `<b>પગલું 2:</b> \\( ${deg} \\times \\frac{\\pi}{180} \\)<br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${radFraction}\\pi \\) રેડિયન.`;
+                }
+                else if (topic === 'vector') {
+                    const x1 = parseFloat(document.getElementById('v1x').value);
+                    const y1 = parseFloat(document.getElementById('v1y').value);
+                    const x2 = parseFloat(document.getElementById('v2x').value);
+                    const y2 = parseFloat(document.getElementById('v2y').value);
+                    if([x1,y1,x2,y2].some(isNaN)) throw "Fill all fields / બધા ખાના ભરો";
+
+                    const dot = (x1*x2) + (y1*y2);
+
+                    resEn += `<b>Step 1:</b> Dot Product Formula: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br>`;
+                    resEn += `<b>Step 2:</b> Substitute: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br>`;
+                    resEn += `<b>Result:</b> \\( ${x1*x2} + (${y1*y2}) = ${dot} \\)`;
+
+                    resGu += `<b>પગલું 1:</b> અદિશ ગુણાકારનું સૂત્ર: \\( \\vec{a} \\cdot \\vec{b} = (x_1)(x_2) + (y_1)(y_2) \\)<br>`;
+                    resGu += `<b>પગલું 2:</b> કિંમતો મૂકો: \\( (${x1})(${x2}) + (${y1})(${y2}) \\)<br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${x1*x2} + (${y1*y2}) = ${dot} \\)`;
+                }
+                else if (topic === 'coord') {
+                    const x1 = parseFloat(document.getElementById('cx1').value);
+                    const y1 = parseFloat(document.getElementById('cy1').value);
+                    const x2 = parseFloat(document.getElementById('cx2').value);
+                    const y2 = parseFloat(document.getElementById('cy2').value);
+                    if([x1,y1,x2,y2].some(isNaN)) throw "Fill all fields / બધા ખાના ભરો";
+
+                    const dist = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2)).toFixed(3);
+                    let slope = "Undefined (Vertical)";
+                    if(x2 !== x1) slope = ((y2-y1)/(x2-x1)).toFixed(3);
+
+                    resEn += `<b>Distance:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} = ${dist} \\)<br>`;
+                    resEn += `<b>Slope:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = ${slope} \\)<br>`;
+
+                    resGu += `<b>અંતર:</b> \\( d = \\sqrt{(${x2}-${x1})^2 + (${y2}-${y1})^2} = ${dist} \\)<br>`;
+                    resGu += `<b>ઢાળ:</b> \\( m = \\frac{${y2}-${y1}}{${x2}-${x1}} = ${slope} \\)<br>`;
+                }
+                else if (topic === 'limit') {
+                    const c = parseFloat(document.getElementById('lim-c').value);
+                    const a = parseFloat(document.getElementById('lim-a').value);
+                    const b = parseFloat(document.getElementById('lim-b').value);
+                    if([c,a,b].some(isNaN)) throw "Fill all fields / બધા ખાના ભરો";
+
+                    const ans = (a * Math.pow(c, 2)) + (b * c);
+
+                    resEn += `<b>Problem:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br>`;
+                    resEn += `<b>Step 1:</b> Direct Substitution of \\( x = ${c} \\).<br>`;
+                    resEn += `<b>Step 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br>`;
+                    resEn += `<b>Result:</b> \\( ${a * c * c} + (${b * c}) = ${ans} \\)`;
+
+                    resGu += `<b>રકમ:</b> \\( \\lim_{x \\to ${c}} (${a}x^2 + ${b}x) \\)<br>`;
+                    resGu += `<b>પગલું 1:</b> સીધી કિંમત મૂકો \\( x = ${c} \\).<br>`;
+                    resGu += `<b>પગલું 2:</b> \\( ${a}(${c})^2 + ${b}(${c}) \\)<br>`;
+                    resGu += `<b>જવાબ:</b> \\( ${a * c * c} + (${b * c}) = ${ans} \\)`;
+                }
+
+                outputDiv.innerHTML = `
+                    <div class="flex flex-col h-full space-y-4 text-left w-full">
+                        <div class="p-5 bg-green-50 text-green-900 border-l-4 border-green-500 rounded-r-lg shadow-sm flex-1">
+                            <h4 class="font-bold border-b border-green-200 pb-2 mb-3 uppercase tracking-wide text-sm text-green-800">English Solution</h4>
+                            <div class="math-text leading-loose">${resEn}</div>
+                        </div>
+                        <div class="p-5 bg-blue-50 text-blue-900 border-l-4 border-blue-500 rounded-r-lg shadow-sm flex-1">
+                            <h4 class="font-bold border-b border-blue-200 pb-2 mb-3 uppercase tracking-wide text-sm text-blue-800">Gujarati Solution (ગુજરાતી)</h4>
+                            <div class="math-text leading-loose">${resGu}</div>
+                        </div>
+                    </div>
+                `;
+            } catch (err) {
+                outputDiv.innerHTML = `<div class="m-auto p-4 bg-red-100 text-red-700 rounded-lg font-bold flex items-center gap-2 border border-red-300">⚠️ Error: ${err}</div>`;
+            }
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise([outputDiv]);
+            }
+        }
+    </script>
+</body>
+</html>
