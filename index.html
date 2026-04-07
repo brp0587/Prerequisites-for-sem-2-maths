@@ -153,7 +153,7 @@
 <body>
 
     <header>
-        <h1>Foundation for Semester 2 Mathematics </h1>
+        <h1>Foundation for Semester 2 Mathematics</h1>
         <p>સત્ર 2 માટે ગણિત પાયાની માર્ગદર્શિકા (Prerequisite Study Guide)</p>
     </header>
 
@@ -199,7 +199,7 @@
     <footer>
         <div class="counter">
             Page Visits / પૃષ્ઠ મુલાકાતો: 
-            <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbrp0587.github.io%2FYOUR-PAGE-NAME&labelColor=%230F172A&countColor=%23A855F7&style=flat" alt="Global Visit Counter" style="vertical-align: middle; margin-left: 8px; height: 20px; border-radius: 4px;">
+            <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbrp0587.github.io%2FPrerequisites-for-sem-2-maths&labelColor=%230F172A&countColor=%23A855F7&style=flat" alt="Global Visit Counter" style="vertical-align: middle; margin-left: 8px; height: 20px; border-radius: 4px;">
         </div>
         <div class="copyright">
             &copy; 2026 Prepared by <strong>Bhavin R Patel</strong><br>
@@ -216,7 +216,6 @@
                 defGu: "ઇનપુટના ગણથી આઉટપુટના ગણ સુધીનો એવો સંબંધ જેમાં દરેક ઇનપુટ માટે માત્ર એક જ આઉટપુટ હોય.",
                 appEn: "Programming algorithms, predicting machine output based on input parameters.",
                 appGu: "પ્રોગ્રામિંગ અલ્ગોરિધમ્સમાં અને ઇનપુટ પરથી મશીનના આઉટપુટની આગાહી કરવા માટે.",
-                // FIX: Moved Gujarati out of MathJax and into standard HTML for perfect rendering
                 formulas: `$$y = f(x)$$ 
                 <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: left; display: inline-block; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                     <p style="margin-bottom: 5px;"><b>Domain (પ્રદેશ):</b> Set of all valid inputs \\(x\\)</p>
@@ -479,7 +478,7 @@
         function calculateLab() {
             const topic = document.getElementById('lab-topic').value;
             const out = document.getElementById('lab-output');
-            let resultHtml = `<h3>Step-by-Step Solution / સ્ટેપ-બાય-સ્ટેપ ઉકેલ:</h3>`;
+            let resultHtml = `<h3>Step-by-Step Solution / સ્ટેપ-બ-સ્ટેપ ઉકેલ:</h3>`;
 
             try {
                 if (topic === "Function" || topic === "Polynomial" || topic === "Limit") {
@@ -622,16 +621,9 @@
             if (window.MathJax) MathJax.typesetPromise([out]);
         }
 
-        function updateCounter() {
-            let count = localStorage.getItem('math_guide_v3_visits') || 0;
-            count++;
-            localStorage.setItem('math_guide_v3_visits', count);
-            document.getElementById('visit-counter').innerText = count;
-        }
-
+        // Initialize content only without the old local storage counter logic
         window.onload = () => {
             renderContent();
-            updateCounter();
             if (window.MathJax) MathJax.typesetPromise();
         };
     </script>
